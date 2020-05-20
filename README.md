@@ -1,2 +1,3 @@
 # agilephdschool2019.github.io
-PhD School Website
+
+Render `index.Rmd` to HTML.

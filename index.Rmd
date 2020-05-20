@@ -1,0 +1,115 @@
+---
+title: "AGILE PhD School 2019"
+author: "Daniel Nüst"
+date: "5/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## About
+
+...
+
+## Citation
+
+```
+...
+```
+
+## Articles
+
+```{r paths}
+library("here")
+article_repos <- here::here("article_repos")
+```
+
+```{r article_repos}
+# read from repos.txt
+library("tibble")
+suppressPackageStartupMessages(library("dplyr"))
+library("stringr")
+library("rmarkdown")
+
+download.file(url = "https://raw.githubusercontent.com/agilephdschool2019/agile_2019_phd_school_proceedings/master/repos.txt",
+              destfile = "repos.txt")
+
+articles <- as_tibble(read.csv2(here::here("repos.txt"), comment.char = "#",
+                                stringsAsFactors = FALSE)) %>%
+  dplyr::mutate(id = stringr::str_replace_all(.$author, "[;\\.,\\s]", " ") %>%
+                  stringr::str_replace_all(
+                    c('ü' = 'ue', 'ï' = 'ie', 'ë' = 'ee', 'ä' = 'ae',
+                      'ö' = 'oe', 'š' = 's', 'í' = 'i', 'ř' = 'r')) %>%
+                  stringr::str_squish() %>%
+                  stringr::str_replace_all(" ", "_")) %>%
+  dplyr::mutate(path = file.path(article_repos, .$id)) %>%
+  arrange(id)
+
+# clone repos
+suppressPackageStartupMessages(library("gert"))
+
+for (i in 1:nrow(articles)) {
+  repo <- articles[i,]
+  path <- repo$path
+  if(dir.exists(path)) {
+    cat("Skipping existing directory ", rmarkdown::relative_to(dir = here(), path), "\n")
+    next()
+  }
+  
+  dir.create(path, showWarnings = FALSE)
+  cat("Cloning for", repo$author, "from", repo$work_repo, "to", path, "\n")
+  gert::git_clone(url = paste0("https://github.com/", repo$work_repo), path = path)
+}
+```
+
+```{r rmd_files}
+rmd_file <- function(p) {
+  candidates <- list.files(p, pattern = "\\.Rmd$", ignore.case = TRUE)
+  if(length(candidates) > 1) {
+    warning("Found more than one R Markdown file in ", p, "\n\t",
+            toString(candidates), "\n\tUsing: ", candidates[[1]], "\n\n")
+    return(candidates[[1]])
+  }
+  if(length(candidates) < 1) {
+    warning("Found NO R Markdown file in ", p, "\n\n")
+    return(NA)
+  }
+  else {
+    return(candidates)
+  }
+}
+
+articles$rmd_file <- unlist(sapply(articles %>% arrange(id) %>% .$path, rmd_file))
+```
+
+```{r toc, results='asis'}
+suppressPackageStartupMessages(library("glue"))
+
+author_template <- '<author>{author}</author>'
+paper_template <- '<paper id="{id}">
+      <title>{title}</title>
+      <authors>
+        {authors}
+      </authors>
+  </paper>'
+
+generate_toc_entry <- function(article) {
+  article_yaml <- rmarkdown:::yaml_front_matter(file.path(article$path, article$rmd_file))
+  authors <- paste0(glue::glue_data(
+                         list(author = sapply(article_yaml$author,
+                                              function(a) { a$name })),
+                         author_template),
+                    collapse = "\n      ")
+  glue::glue_data(list(title = article_yaml$title,
+                       id = article$id,
+                       authors = authors),
+                  paper_template)
+}
+
+tocs <- c()
+for (i in 1:nrow(articles)) {
+  cat(tocs, generate_toc_entry(article = articles[i,]))
+}
+```
