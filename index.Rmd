@@ -21,7 +21,7 @@ See [https://agile-online.org/agile-actions/phd-school](https://agile-online.org
 
 [![AGILE Logo](https://agile-online.org/conference_paper/images/logos/Agile_logo_new.png)](https://agile-online.org/)
 
-The whole submission workflow is aiming to demonstrate [reproducibility guidelines](https://osf.io/phmce/) and is based on R Markdown. See [the proceedings repository](https://github.com/agilephdschool2019/agile_2019_phd_school_proceedings) for details. If you're interested in reusing the workflow, please reach out to [Daniel](mailto:daniel.nuest@uni-muenster.de).
+The whole submission workflow is aiming to demonstrate [reproducibility guidelines](https://doi.org/10.17605/OSF.IO/CB7Z8) and is based on R Markdown. See [the proceedings repository](https://github.com/agilephdschool2019/agile_2019_phd_school_proceedings) for details. If you're interested in reusing the workflow, please reach out to [Daniel](mailto:daniel.nuest@uni-muenster.de).
 
 ## Articles of the proceedings
 
@@ -110,10 +110,10 @@ articles %>%
 
 ## How to cite
 
-> Alexander Kmoch, Daniel Nüst, & Evelyn Uuemaa (eds.) **Proceedings of the 5th AGILE (Association of Geographic Information Laboratories for Europe) PhD School 2019, Tartu, November 25-28, 2019** Zenodo. doi: [10.5281/zenodo.3835766](https://doi.org/10.5281/zenodo.3835766) online [https://agilephdschool2019.github.io/](https://agilephdschool2019.github.io/)
+> Alexander Kmoch, Daniel Nüst, & Evelyn Uuemaa (eds.) **Proceedings of the 5th AGILE (Association of Geographic Information Laboratories for Europe) PhD School 2019, Tartu, November 25-28, 2019** Zenodo. doi: [10.5281/zenodo.3835766](https://doi.org/10.5281/zenodo.3835766) online: [https://agilephdschool2019.github.io/](https://agilephdschool2019.github.io/)
 
 See the "Export" box on the right hand side of the Zenodo record for different reference formats, e.g., BibTex.
 
 To cite individual articles, please use the following schema:
 
-> AUTHOR, 2019. TITLE. In: A. Kmoch, E. Uuemaa, D. Nüst (eds.): Proceedings of the 5th AGILE PhD School 2019, Tartu, November 2019, doi: [10.5281/zenodo.3835766](https://doi.org/10.5281/zenodo.3835766)
+> AUTHOR, 2019. TITLE. In: A. Kmoch, D. Nüst, E. Uuemaa (eds.): Proceedings of the 5th AGILE PhD School 2019, Tartu, November 2019, doi: [10.5281/zenodo.3835766](https://doi.org/10.5281/zenodo.3835766)
