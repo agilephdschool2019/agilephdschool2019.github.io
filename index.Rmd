@@ -1,5 +1,5 @@
 ---
-title: "AGILE PhD School 2019"
+title: "Proceedings of the 5th AGILE PhD School, 2019, Tartu"
 author: "Alexander Kmoch, Daniel Nüst, Evelyn Uuemaa"
 date: "May 2020"
 output:
@@ -15,18 +15,15 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ## About
 
-This is the website of the 5th AGILE PhD School 2019 proceedings.
-The event took place at the [Institute of Ecology and Earth Sciences](https://www.omi.ut.ee/en), Faculty of Science and Technology, University of Tartu.
+This is the website of the proceedings of the 5th AGILE PhD School 2019. The event took place at the [Department of Geography](https://www.geograafia.ut.ee/en), Institute of Ecology and Earth Sciences, University of Tartu, Estonia.
 
 See [https://agile-online.org/agile-actions/phd-school](https://agile-online.org/agile-actions/phd-school) for previous AGILE PhD Schools.
 
 [![AGILE Logo](https://agile-online.org/conference_paper/images/logos/Agile_logo_new.png)](https://agile-online.org/)
 
-The whole submission workflow is based on R Markdown.
-See [the proceedings repository](https://github.com/agilephdschool2019/agile_2019_phd_school_proceedings) for details.
-If you're interested in reusing the workflow, please reach out to [Daniel](mailto:daniel.nuest@uni-muenster.de).
+The whole submission workflow is aiming to demonstrate [reproducibility guidelines](https://osf.io/phmce/) and is based on R Markdown. See [the proceedings repository](https://github.com/agilephdschool2019/agile_2019_phd_school_proceedings) for details. If you're interested in reusing the workflow, please reach out to [Daniel](mailto:daniel.nuest@uni-muenster.de).
 
-## Articles
+## Articles of the proceedings
 
 ```{r paths}
 suppressPackageStartupMessages(library("here"))
@@ -111,7 +108,7 @@ articles %>%
   kable_styling(bootstrap_options = c("hover", "condensed"))
 ```
 
-## Citation
+## How to cite
 
 > Alexander Kmoch, Daniel Nüst, & Evelyn Uuemaa. 2020. **Proceedings of the 5th AGILE PhD School 2019** (Version 1.1). Zenodo. doi: [10.5281/zenodo.3835766](https://doi.org/10.5281/zenodo.3835766)
 
